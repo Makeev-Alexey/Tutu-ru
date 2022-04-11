@@ -4,6 +4,7 @@ import Articles
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.webkit.WebViewClient
 import com.example.tutu_ru.databinding.ActivityArticleBinding
 import com.example.tutu_ru.databinding.ActivityMainBinding
 
@@ -15,11 +16,9 @@ class ArticleActivity : AppCompatActivity() {
         _binding = ActivityArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var article = intent.getParcelableExtra<Articles>("article")
-        if (article != null) {
-            binding.textView.text = article.publishedAt
-            binding.textView2.text = article.author
-            binding.textView3.text = article.title
-            binding.textView4.text = article.content
-        }
+        binding.web.webViewClient = WebViewClient()
+        binding.web.loadUrl(article?.url.toString())
+        binding.web.settings.javaScriptEnabled = true
+        binding.web.settings.setSupportZoom(true)
     }
 }

@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<Base>, t: Throwable) {
                 println(t.message)
             }
-
         })
     }
+
 }
